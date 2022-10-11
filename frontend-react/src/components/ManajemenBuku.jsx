@@ -73,8 +73,7 @@ function ManajemenBuku() {
           </div>
         </div>
       )}
-      <TabelBuku showEdit={showEditForm} />
-      <p>{JSON.stringify(books)}</p>
+      <TabelBuku showEdit={showEditForm} books={books} />
     </div>
   )
 }

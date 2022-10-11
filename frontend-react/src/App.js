@@ -1,5 +1,4 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom"
-import "./App.css"
 import Beranda from "./components/Beranda"
 import ManajemenBuku from "./components/ManajemenBuku"
 import Navbar from "./components/Navbar"
