@@ -1,8 +1,11 @@
 import React from "react"
 
-function TabelBuku({ showEdit, books }) {
-  const editData = () => {
-    showEdit()
+function TabelBuku({ showEdit, books, requestToDelete }) {
+  const editData = (book) => {
+    showEdit(book)
+  }
+  const deleteData = (book) => {
+    requestToDelete(book)
   }
 
   return (
@@ -21,16 +24,21 @@ function TabelBuku({ showEdit, books }) {
           {books.map((book, index) => (
             <tr key={index}>
               <td>{index + 1}</td>
-              <td>Laskar Pelangi</td>
-              <td>Andrea Hirata</td>
+              <td>{book.judul}</td>
+              <td>{book.pengarang}</td>
               <td>
                 <button
                   className="btn btn-sm btn-warning mx-2"
-                  onClick={() => editData()}
+                  onClick={() => editData(book)}
                 >
                   Edit
                 </button>
-                <button className="btn btn-sm btn-danger">delete</button>
+                <button
+                  className="btn btn-sm btn-danger"
+                  onClick={() => deleteData(book)}
+                >
+                  delete
+                </button>
               </td>
             </tr>
           ))}
