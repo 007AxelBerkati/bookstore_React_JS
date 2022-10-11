@@ -1,8 +1,10 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import TabelBuku from "./TabelBuku"
+import axios from "axios"
 
 function ManajemenBuku() {
   const [formMode, setFormMode] = useState("")
+  const [books, setBooks] = useState()
 
   function showCreateForm() {
     setFormMode("show")
@@ -11,6 +13,21 @@ function ManajemenBuku() {
   const showEditForm = () => {
     setFormMode("show")
   }
+
+  const retriveData = () => {
+    axios
+      .get("http://localhost:4000/book")
+      .then((res) => {
+        setBooks(res.data)
+      })
+      .catch((err) => {
+        console.log(err.response.data)
+      })
+  }
+
+  useEffect(() => {
+    retriveData()
+  }, [])
 
   return (
     <div className="container mt-3">
@@ -57,6 +74,7 @@ function ManajemenBuku() {
         </div>
       )}
       <TabelBuku showEdit={showEditForm} />
+      <p>{JSON.stringify(books)}</p>
     </div>
   )
 }
